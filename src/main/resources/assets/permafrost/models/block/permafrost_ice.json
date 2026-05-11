@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "permafrost:block/permafrost_ice"
+  }
+}
