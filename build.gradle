@@ -173,8 +173,10 @@ dependencies {
     runtimeOnly fg.deobf('maven.modrinth:curios:5.14.1+1.20.1')
 
     // Use local Maven artifact if available (published with `./gradlew publishToMavenLocal` in the Thermodynamica project)
-    compileOnly(fg.deobf("com.github.thermodynamica:thermodynamica:0.3.1"))
-    runtimeOnly(fg.deobf("com.github.thermodynamica:thermodynamica:0.3.1"))
+    // compileOnly(fg.deobf("com.github.thermodynamica:thermodynamica:0.3.1"))
+    // runtimeOnly(fg.deobf("com.github.thermodynamica:thermodynamica:0.3.1"))
+    compileOnly(fg.deobf("maven.modrinth:thermodynamica:0.4.1"))
+    runtimeOnly(fg.deobf("maven.modrinth:thermodynamica:0.4.1"))
 
     compileOnly fg.deobf('maven.modrinth:power-grid:0.5.5.1')
     runtimeOnly fg.deobf("maven.modrinth:power-grid:0.5.5.1")
@@ -185,6 +187,13 @@ dependencies {
     compileOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_version}"))
     runtimeOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}"))
     implementation(fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}"))
+
+    // MixinExtras: provides @ApplyToSubclasses. Bundled via jarJar so the runtime resolves to
+    // 0.5.4 (with the inheritance feature) instead of the older bundled-with-Forge version.
+    compileOnly(annotationProcessor('io.github.llamalad7:mixinextras-common:0.5.4'))
+    implementation(jarJar('io.github.llamalad7:mixinextras-forge:0.5.4')) {
+        jarJar.ranged(it, '[0.5.4,)')
+    }
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar

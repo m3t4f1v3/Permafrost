@@ -1,8 +1,6 @@
 package io.github.m3t4f1v3.permafrost.integration;
 
-import com.Tribulla.thermodynamica.Thermodynamica;
 import com.Tribulla.thermodynamica.api.HeatAPI;
-import com.Tribulla.thermodynamica.api.HeatTier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 
@@ -19,12 +17,8 @@ public final class ThermodynamicaIntegration {
         return getCurrentTemperature(level, pos);
     }
 
-    public static float getTierCelsius(HeatTier tier) {
-        return (float) HeatAPI.get().getTierCelsius(tier);
-    }
-
     public static float getMeltEternalTemperature() {
-        return getTierCelsius(HeatTier.POS5) + 0.25F;
+        return 3000F;
     }
 
     public static void applyHeatToSimulation(Level level, BlockPos pos, double celsius) {

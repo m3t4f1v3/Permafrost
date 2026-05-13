@@ -4,7 +4,6 @@ import com.mojang.logging.LogUtils;
 import io.github.m3t4f1v3.permafrost.block.PermafrostIceBlock;
 import io.github.m3t4f1v3.permafrost.integration.ArsNouveauIntegration;
 import io.github.m3t4f1v3.permafrost.integration.ThermodynamicaIntegration;
-import com.Tribulla.thermodynamica.api.HeatTier;
 import io.github.m3t4f1v3.permafrost.mixin.IceBlockAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -92,11 +91,12 @@ public class Permafrost {
 
     public static void melt(BlockPos sourcePos, BlockState state, Level level, BlockPos pos) {
         Block block = state.getBlock();
-        float permafrostThreshold = ThermodynamicaIntegration.getTierCelsius(HeatTier.POS5);
-        float iceThreshold = ThermodynamicaIntegration.getTierCelsius(HeatTier.POS4);
-        float packedIceThreshold = ThermodynamicaIntegration.getTierCelsius(HeatTier.POS3);
-        float snowThreshold = ThermodynamicaIntegration.getTierCelsius(HeatTier.ZERO);
-        float powderSnowThreshold = ThermodynamicaIntegration.getTierCelsius(HeatTier.POS1);
+        float permafrostThreshold = 3000F;
+        float iceThreshold = 0F;
+        float packedIceThreshold = 50F;
+        float blueIceThreshold = 100F;
+        float snowThreshold = 0F;
+        float powderSnowThreshold = 0F;
 
         float temperature = ThermodynamicaIntegration.getVisualTemperature(level, pos);
         if (block instanceof PermafrostIceBlock iceBlock) {
@@ -110,7 +110,7 @@ public class Permafrost {
             ((IceBlockAccessor) iceBlock).invokeMelt(state, level, pos);
 
         } else if ((state.is(Blocks.PACKED_ICE) && temperature > packedIceThreshold)
-                || (state.is(Blocks.BLUE_ICE) && temperature > iceThreshold)) {
+                || (state.is(Blocks.BLUE_ICE) && temperature > blueIceThreshold)) {
 
             level.setBlockAndUpdate(pos, Blocks.WATER.defaultBlockState());
 
