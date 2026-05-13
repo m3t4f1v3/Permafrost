@@ -173,14 +173,17 @@ dependencies {
     runtimeOnly fg.deobf('maven.modrinth:curios:5.14.1+1.20.1')
 
     // Use local Maven artifact if available (published with `./gradlew publishToMavenLocal` in the Thermodynamica project)
-    // compileOnly(fg.deobf("com.github.thermodynamica:thermodynamica:0.3.1"))
-    // runtimeOnly(fg.deobf("com.github.thermodynamica:thermodynamica:0.3.1"))
-    compileOnly(fg.deobf("maven.modrinth:thermodynamica:0.4.1"))
-    runtimeOnly(fg.deobf("maven.modrinth:thermodynamica:0.4.1"))
+    compileOnly(fg.deobf("com.github.thermodynamica:thermodynamica:0.4.1"))
+    runtimeOnly(fg.deobf("com.github.thermodynamica:thermodynamica:0.4.1"))
+    // compileOnly(fg.deobf("maven.modrinth:thermodynamica:0.4.1"))
+    // runtimeOnly(fg.deobf("maven.modrinth:thermodynamica:0.4.1"))
 
     compileOnly fg.deobf('maven.modrinth:power-grid:0.5.5.1')
     runtimeOnly fg.deobf("maven.modrinth:power-grid:0.5.5.1")
     runtimeOnly fg.deobf('maven.modrinth:architectury-api:9.2.14+forge')
+
+    compileOnly fg.deobf("maven.modrinth:homeostatic:1.20.1-2.9.16.2-FORGE")
+    runtimeOnly fg.deobf("maven.modrinth:homeostatic:1.20.1-2.9.16.2-FORGE")
 
     implementation(fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false })
     implementation(fg.deobf("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"))

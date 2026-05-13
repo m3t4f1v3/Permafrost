@@ -2,7 +2,6 @@ package io.github.m3t4f1v3.permafrost.mixin;
 
 import com.llamalad7.mixinextras.inheritance.ApplyToSubclasses;
 import com.llamalad7.mixinextras.inheritance.InheritedShadow;
-import io.github.m3t4f1v3.permafrost.integration.PowerGridIntegration;
 import io.github.m3t4f1v3.permafrost.integration.ThermodynamicaIntegration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -63,6 +62,5 @@ public abstract class HeatedPowerGridBlockEntityMixin extends BlockEntity {
             return;
         }
         ThermodynamicaIntegration.applyHeatToSimulation(level, pos, thermalBehaviour.getTemperature());
-        PowerGridIntegration.meltNearbyPermafrost(level, pos);
     }
 }

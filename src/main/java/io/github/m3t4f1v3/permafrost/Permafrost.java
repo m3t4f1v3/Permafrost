@@ -98,7 +98,7 @@ public class Permafrost {
         float snowThreshold = 0F;
         float powderSnowThreshold = 0F;
 
-        float temperature = ThermodynamicaIntegration.getVisualTemperature(level, pos);
+        float temperature = ThermodynamicaIntegration.getCurrentTemperature(level, pos);
         if (block instanceof PermafrostIceBlock iceBlock) {
 
             if (temperature >= permafrostThreshold) {
