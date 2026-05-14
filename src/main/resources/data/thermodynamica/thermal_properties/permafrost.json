@@ -1,0 +1,10 @@
+{
+    "blocks": {
+        "permafrost:permafrost_ice": {
+            "conductivity": 4,
+            "heat_capacity": 105,
+            "dissipation_rate": 0.01,
+            "temperature": -273.15
+        }
+    }
+}

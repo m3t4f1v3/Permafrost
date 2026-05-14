@@ -185,6 +185,9 @@ dependencies {
     compileOnly fg.deobf("maven.modrinth:homeostatic:1.20.1-2.9.16.2-FORGE")
     runtimeOnly fg.deobf("maven.modrinth:homeostatic:1.20.1-2.9.16.2-FORGE")
 
+    compileOnly(fg.deobf("maven.modrinth:prototype-pain:2.7.2"))
+    runtimeOnly(fg.deobf("maven.modrinth:prototype-pain:2.7.2"))
+
     implementation(fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false })
     implementation(fg.deobf("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"))
     compileOnly(fg.deobf("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_version}"))

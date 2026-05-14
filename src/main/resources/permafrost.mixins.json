@@ -5,11 +5,13 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "permafrost.refmap.json",
   "mixins": [
-    "HeatedPowerGridBlockEntityMixin",
-    "HeaterBlockEntityMixin",
-    "ThermalBehaviourMixin",
-    "BakedCircuitMixin",
-    "ThermalUnitAccessor"
+    "powergrid.HeatedPowerGridBlockEntityMixin",
+    "powergrid.HeaterBlockEntityMixin",
+    "powergrid.ThermalBehaviourMixin",
+    "powergrid.BakedCircuitMixin",
+    "powergrid.ThermalUnitAccessor",
+    "prototype_pain.TempCompatMixin",
+    "homeostatic.EnvironmentMixin"
   ],
   "client": [],
   "injectors": {

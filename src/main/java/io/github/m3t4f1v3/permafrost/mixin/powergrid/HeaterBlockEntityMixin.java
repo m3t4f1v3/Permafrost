@@ -1,4 +1,4 @@
-package io.github.m3t4f1v3.permafrost.mixin;
+package io.github.m3t4f1v3.permafrost.mixin.powergrid;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;

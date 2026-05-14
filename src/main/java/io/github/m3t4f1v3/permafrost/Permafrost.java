@@ -101,8 +101,6 @@ public class Permafrost {
             return;
         }
 
-        LOGGER.debug("Temperature update at {}: {}C -> {}C", pos, event.getOldCelsius(), event.getNewCelsius());
-
         BlockState state = level.getBlockState(event.getPos());
         Block block = state.getBlock();
 
