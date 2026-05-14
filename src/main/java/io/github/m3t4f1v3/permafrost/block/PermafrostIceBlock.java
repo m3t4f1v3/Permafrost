@@ -1,10 +1,12 @@
 package io.github.m3t4f1v3.permafrost.block;
 
+import io.github.m3t4f1v3.permafrost.Permafrost;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.IceBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -12,9 +14,9 @@ import net.minecraft.world.level.block.state.BlockState;
  * Unbreakable Permafrost Ice Block
  * Can only be melted by:
  * - Power Grid Heating Coils (electric heating)
- * - Ars Nouveau Melt Eternal spell (magical heating)
+ * - Ars Nouveau Frost Burn spell (magical heating)
  */
-public class PermafrostIceBlock extends IceBlock {
+public class PermafrostIceBlock extends IceBlock implements Meltable {
 
     public PermafrostIceBlock(Properties properties) {
         super(properties);
@@ -33,17 +35,22 @@ public class PermafrostIceBlock extends IceBlock {
     }
 
     @Override
-    public boolean canEntityDestroy(BlockState state, BlockGetter level, BlockPos pos, net.minecraft.world.entity.Entity entity) {
+    public boolean canEntityDestroy(BlockState state, BlockGetter level, BlockPos pos,
+            Entity entity) {
         // Entities cannot destroy this
         return false;
     }
 
-    /**
-     * Called when affected by Melt Eternal spell
-     */
-    public void meltBySpell(Level level, BlockPos pos) {
-        if (!level.isClientSide) {
-            melt(null, level, pos);
+    @Override
+    public float getMeltThreshold(BlockState state) {
+        return 3000F;
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        Permafrost.getLogger().debug("weh");
+        if (shouldMelt(state, level, pos)) {
+            melt(state, level, pos);
         }
     }
 }

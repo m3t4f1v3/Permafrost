@@ -1,10 +1,10 @@
 package io.github.m3t4f1v3.permafrost;
 
 import com.mojang.logging.LogUtils;
+import com.Tribulla.thermodynamica.api.TemperatureChangeEvent;
 import io.github.m3t4f1v3.permafrost.block.PermafrostIceBlock;
 import io.github.m3t4f1v3.permafrost.integration.ArsNouveauIntegration;
 import io.github.m3t4f1v3.permafrost.integration.ThermodynamicaIntegration;
-import io.github.m3t4f1v3.permafrost.mixin.IceBlockAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
@@ -51,7 +51,7 @@ public class Permafrost {
             .create(Registries.CREATIVE_MODE_TAB, MODID);
 
     // Unbreakable Permafrost Ice Block
-    // Only meltable by Power Grid heating coils or Ars Nouveau's Melt Eternal spell
+    // Only meltable by Power Grid heating coils or Ars Nouveau's Frost Burn spell
     public static final RegistryObject<Block> PERMAFROST_ICE = BLOCKS.register("permafrost_ice",
             () -> new PermafrostIceBlock(
                     BlockBehaviour.Properties
@@ -77,6 +77,7 @@ public class Permafrost {
         MinecraftForge.EVENT_BUS.register(this);
 
         ArsNouveauIntegration.register();
+        ThermodynamicaIntegration.registerTemperatureChangeListener(this::onThermodynamicaTemperatureUpdate);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -89,25 +90,40 @@ public class Permafrost {
         }
     }
 
-    public static void melt(BlockPos sourcePos, BlockState state, Level level, BlockPos pos) {
+    public static Logger getLogger() {
+        return LOGGER;
+    }
+
+    private void onThermodynamicaTemperatureUpdate(TemperatureChangeEvent event) {
+        Level level = event.getLevel();
+        BlockPos pos = event.getPos();
+        if (level.isClientSide) {
+            return;
+        }
+
+        LOGGER.debug("Temperature update at {}: {}C -> {}C", pos, event.getOldCelsius(), event.getNewCelsius());
+
+        BlockState state = level.getBlockState(event.getPos());
         Block block = state.getBlock();
+
         float permafrostThreshold = 3000F;
         float iceThreshold = 0F;
-        float packedIceThreshold = 50F;
-        float blueIceThreshold = 100F;
-        float snowThreshold = 0F;
-        float powderSnowThreshold = 0F;
+        float packedIceThreshold = 8F;
+        float blueIceThreshold = 18F;
 
-        float temperature = ThermodynamicaIntegration.getCurrentTemperature(level, pos);
+        float snowThreshold = 2F;
+        float powderSnowThreshold = -2F;
+
+        float temperature = (float) event.getNewCelsius();
         if (block instanceof PermafrostIceBlock iceBlock) {
 
             if (temperature >= permafrostThreshold) {
-                ((IceBlockAccessor) iceBlock).invokeMelt(state, level, pos);
+                iceBlock.melt(state, level, pos);
             }
 
         } else if (block instanceof IceBlock iceBlock && temperature > iceThreshold) {
 
-            ((IceBlockAccessor) iceBlock).invokeMelt(state, level, pos);
+            iceBlock.melt(state, level, pos);
 
         } else if ((state.is(Blocks.PACKED_ICE) && temperature > packedIceThreshold)
                 || (state.is(Blocks.BLUE_ICE) && temperature > blueIceThreshold)) {
@@ -118,14 +134,17 @@ public class Permafrost {
 
             level.setBlockAndUpdate(pos, Blocks.WATER.defaultBlockState());
 
-        } else if (block instanceof SnowLayerBlock && temperature > snowThreshold) {
+        } else if (block instanceof SnowLayerBlock) {
+            int layers = state.getValue(SnowLayerBlock.LAYERS);
+            float layerThreshold = -6F + layers;
+            if (temperature > layerThreshold) {
+                level.setBlockAndUpdate(pos,
+                        Blocks.WATER.defaultBlockState()
+                                .setValue(LiquidBlock.LEVEL,
+                                        layers));
+            }
 
-            level.setBlockAndUpdate(pos,
-                    Blocks.WATER.defaultBlockState()
-                            .setValue(LiquidBlock.LEVEL,
-                                    state.getValue(SnowLayerBlock.LAYERS)));
-
-        } else if (state.is(Blocks.SNOW_BLOCK) && temperature > powderSnowThreshold) {
+        } else if (state.is(Blocks.SNOW_BLOCK) && temperature > snowThreshold) {
 
             level.setBlockAndUpdate(pos, Blocks.WATER.defaultBlockState());
         }

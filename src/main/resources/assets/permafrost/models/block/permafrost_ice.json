@@ -1,5 +1,6 @@
 {
-  "parent": "block/cube_all",
+  "parent": "minecraft:block/ice",
+  "render_type": "translucent",
   "textures": {
     "all": "permafrost:block/permafrost_ice"
   }

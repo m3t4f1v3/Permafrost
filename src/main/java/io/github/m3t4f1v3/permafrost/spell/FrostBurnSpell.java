@@ -1,6 +1,5 @@
 package io.github.m3t4f1v3.permafrost.spell;
 
-import io.github.m3t4f1v3.permafrost.Permafrost;
 import io.github.m3t4f1v3.permafrost.integration.ArsNouveauIntegration;
 import io.github.m3t4f1v3.permafrost.integration.ThermodynamicaIntegration;
 
@@ -22,18 +21,17 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
-public class MeltEternalSpell extends AbstractEffect {
+public class FrostBurnSpell extends AbstractEffect {
 
-    public static final MeltEternalSpell INSTANCE = new MeltEternalSpell();
+    public static final FrostBurnSpell INSTANCE = new FrostBurnSpell();
 
-    private MeltEternalSpell() {
-        super(ResourceLocation.fromNamespaceAndPath("permafrost", "glyph_melt_eternal"), "Melt Eternal");
+    private FrostBurnSpell() {
+        super(ResourceLocation.fromNamespaceAndPath("permafrost", "glyph_frostburn"), "Frost Burn");
     }
 
     public static void register() {
@@ -49,16 +47,14 @@ public class MeltEternalSpell extends AbstractEffect {
 
         for (BlockPos targetPos : SpellUtil.calcAOEBlocks(shooter, rayTraceResult.getBlockPos(), rayTraceResult,
                 spellStats)) {
-            BlockState state = world.getBlockState(targetPos);
             ThermodynamicaIntegration.applyHeatToSimulation(world, targetPos,
-                    ArsNouveauIntegration.getMeltEternalTemperature());
-            Permafrost.melt(rayTraceResult.getBlockPos(), state, world, targetPos);
+                    3500F);
         }
     }
 
     @Override
     public int getDefaultManaCost() {
-        return ArsNouveauIntegration.getMeltEternalManaCost();
+        return ArsNouveauIntegration.getFrostBurnManaCost();
     }
 
     @Override
@@ -81,7 +77,7 @@ public class MeltEternalSpell extends AbstractEffect {
 
     @Override
     public String getBookDescription() {
-        return "An endgame thermal glyph that drives hostile ice into nothingness.";
+        return "DESCRIBE ME";
     }
 
 }

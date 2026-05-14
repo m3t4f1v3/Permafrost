@@ -7,7 +7,6 @@
   "mixins": [
     "HeatedPowerGridBlockEntityMixin",
     "HeaterBlockEntityMixin",
-    // "IceBlockAccessor",
     "ThermalBehaviourMixin",
     "BakedCircuitMixin",
     "ThermalUnitAccessor"

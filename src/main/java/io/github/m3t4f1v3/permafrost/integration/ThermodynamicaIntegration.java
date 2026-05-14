@@ -1,7 +1,10 @@
 package io.github.m3t4f1v3.permafrost.integration;
 
-import com.Tribulla.thermodynamica.Thermodynamica;
+import java.util.function.Consumer;
+
 import com.Tribulla.thermodynamica.api.HeatAPI;
+import com.Tribulla.thermodynamica.api.TemperatureChangeEvent;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 
@@ -14,11 +17,11 @@ public final class ThermodynamicaIntegration {
         return (float) HeatAPI.get().getVisualCelsius(level, pos);
     }
 
-    public static float getMeltEternalTemperature() {
-        return 3000F;
-    }
-
     public static void applyHeatToSimulation(Level level, BlockPos pos, double celsius) {
         HeatAPI.get().setTransientTemperature(level, pos, celsius);
+    }
+
+    public static void registerTemperatureChangeListener(Consumer<TemperatureChangeEvent> listener) {
+        HeatAPI.get().onTemperatureChange(listener);
     }
 }

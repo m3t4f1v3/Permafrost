@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import io.github.m3t4f1v3.permafrost.integration.PowerGridIntegration;
 import io.github.m3t4f1v3.permafrost.integration.ThermodynamicaIntegration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -48,8 +47,6 @@ public class BakedCircuitMixin {
             unit.setTemperature(ThermodynamicaIntegration.getCurrentTemperature(level, pos)
                     * ((ThermalUnitAccessor) unit).getThermalMass() / totalThermalMass);
         }
-        // thermalBehaviour.setTemperature(ThermodynamicaIntegration.getCurrentTemperature(level,
-        // pos));
     }
 
     @Inject(method = "tick", at = @At("TAIL"), remap = false)
@@ -63,6 +60,5 @@ public class BakedCircuitMixin {
             ThermodynamicaIntegration.applyHeatToSimulation(level, pos,
                     unit.getTemperature() * ((ThermalUnitAccessor) unit).getThermalMass() / totalThermalMass);
         }
-        PowerGridIntegration.meltNearbyPermafrost(level, pos);
     }
 }

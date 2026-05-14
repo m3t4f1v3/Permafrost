@@ -1,6 +1,6 @@
 package io.github.m3t4f1v3.permafrost.integration;
 
-import io.github.m3t4f1v3.permafrost.spell.MeltEternalSpell;
+import io.github.m3t4f1v3.permafrost.spell.FrostBurnSpell;
 import net.minecraftforge.fml.ModList;
 
 public class ArsNouveauIntegration {
@@ -15,26 +15,22 @@ public class ArsNouveauIntegration {
     public static void register() {
         if (!isArsNouveauLoaded()) return;
 
-        MeltEternalSpell.register();
+        FrostBurnSpell.register();
     }
 
-    public static int getMeltEternalManaCost() {
+    public static int getFrostBurnManaCost() {
         return 1200;
     }
 
-    public static int getMeltEternalCooldown() {
+    public static int getFrostBurnCooldown() {
         return 30;
     }
 
-    public static double getMeltEternalRange() {
+    public static double getFrostBurnRange() {
         return 32.0;
     }
 
-    public static int getMeltEternalRadius() {
+    public static int getFrostBurnRadius() {
         return 3;
-    }
-
-    public static float getMeltEternalTemperature() {
-        return ThermodynamicaIntegration.getMeltEternalTemperature();
     }
 }

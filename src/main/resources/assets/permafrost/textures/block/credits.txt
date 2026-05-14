@@ -1,0 +1,1 @@
+https://modrinth.com/mod/enlightend - assets/enlightened_end/textures/block/frostburn_ice.png as permafrost_ice.png
