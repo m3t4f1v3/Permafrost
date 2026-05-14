@@ -1,9 +1,7 @@
 package io.github.m3t4f1v3.permafrost.block;
 
-import io.github.m3t4f1v3.permafrost.Permafrost;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
@@ -44,13 +42,5 @@ public class PermafrostIceBlock extends IceBlock implements Meltable {
     @Override
     public float getMeltThreshold(BlockState state) {
         return 3000F;
-    }
-
-    @Override
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        Permafrost.getLogger().debug("weh");
-        if (shouldMelt(state, level, pos)) {
-            melt(state, level, pos);
-        }
     }
 }
