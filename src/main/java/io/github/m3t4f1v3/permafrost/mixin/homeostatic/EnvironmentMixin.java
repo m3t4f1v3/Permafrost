@@ -66,7 +66,7 @@ public class EnvironmentMixin {
                 Vector3d shipPosVec = ship.getWorldToShip().transformPosition(new Vector3d(blockVec.x, blockVec.y, blockVec.z));
                 BlockPos shipPos = BlockPos.containing(shipPosVec.x, shipPosVec.y, shipPosVec.z);
                 BlockState state = world.getBlockState(shipPos);
-                Permafrost.getLogger().debug("Checking block state at {} (world {}, ship {}) for radiation: {}", shipPos, world.dimension().location(), ship.getId(), state);
+                // Permafrost.getLogger().debug("Checking block state at {} (world {}, ship {}) for radiation: {}", shipPos, world.dimension().location(), ship.getId(), state);
                 if (state != null) {
                     blockposRef.set(shipPos);
                     return state;
@@ -88,7 +88,7 @@ public class EnvironmentMixin {
             ServerLevel world,
             BlockPos blockpos) {
 
-        Permafrost.getLogger().debug("Calculating temperature-based radiation at {} in world {}, distance {}, obscured {}, amount {}, y {} for block {}", blockpos, world.dimension().location(), distance, obscured, amount, y, state);
+        // Permafrost.getLogger().debug("Calculating temperature-based radiation at {} in world {}, distance {}, obscured {}, amount {}, y {} for block {}", blockpos, world.dimension().location(), distance, obscured, amount, y, state);
 
         double temperature = ThermodynamicaIntegration.getCurrentTemperature(world, blockpos);
         double ambient = ThermodynamicaIntegration.getAmbientTemperature();
