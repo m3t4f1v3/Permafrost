@@ -11,7 +11,8 @@
     "powergrid.BakedCircuitMixin",
     "powergrid.ThermalUnitAccessor",
     "prototype_pain.TempCompatMixin",
-    "homeostatic.EnvironmentMixin"
+    "homeostatic.EnvironmentMixin",
+    "homeostatic.VecMathMixin"
   ],
   "client": [],
   "injectors": {
