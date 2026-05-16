@@ -1,4 +1,4 @@
-package io.github.m3t4f1v3.permafrost.mixin.powergrid;
+package io.github.m3t4f1v3.permafrost.mixin.thermodynamica_integrations.powergrid;
 
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;

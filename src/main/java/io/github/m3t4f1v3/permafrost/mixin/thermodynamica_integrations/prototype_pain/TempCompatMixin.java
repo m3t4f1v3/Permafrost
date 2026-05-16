@@ -1,4 +1,4 @@
-package io.github.m3t4f1v3.permafrost.mixin.prototype_pain;
+package io.github.m3t4f1v3.permafrost.mixin.thermodynamica_integrations.prototype_pain;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Inject;

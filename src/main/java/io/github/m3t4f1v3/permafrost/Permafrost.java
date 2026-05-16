@@ -1,7 +1,6 @@
 package io.github.m3t4f1v3.permafrost;
 
 import com.mojang.logging.LogUtils;
-import com.Tribulla.thermodynamica.api.TemperatureChangeEvent;
 import io.github.m3t4f1v3.permafrost.block.PermafrostIceBlock;
 import io.github.m3t4f1v3.permafrost.integration.ArsNouveauIntegration;
 import io.github.m3t4f1v3.permafrost.integration.ThermodynamicaIntegration;
@@ -24,6 +23,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -77,7 +77,9 @@ public class Permafrost {
         MinecraftForge.EVENT_BUS.register(this);
 
         ArsNouveauIntegration.register();
-        ThermodynamicaIntegration.registerTemperatureChangeListener(this::onThermodynamicaTemperatureUpdate);
+        if (ModList.get().isLoaded("thermodynamica")) {
+            ThermodynamicaIntegration.registerTemperatureChangeListener();
+        }
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -94,14 +96,11 @@ public class Permafrost {
         return LOGGER;
     }
 
-    private void onThermodynamicaTemperatureUpdate(TemperatureChangeEvent event) {
-        Level level = event.getLevel();
-        BlockPos pos = event.getPos();
+    public static void melt(Level level, BlockState state, float temperature, BlockPos pos) {
         if (level.isClientSide) {
             return;
         }
 
-        BlockState state = level.getBlockState(event.getPos());
         Block block = state.getBlock();
 
         float permafrostThreshold = 3000F;
@@ -112,7 +111,6 @@ public class Permafrost {
         float snowThreshold = 2F;
         float powderSnowThreshold = -2F;
 
-        float temperature = (float) event.getNewCelsius();
         if (block instanceof PermafrostIceBlock iceBlock) {
 
             if (temperature >= permafrostThreshold) {

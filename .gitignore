@@ -1,15 +1,44 @@
-# Project exclude paths
-/.gradle/
-/.idea/
-/build/
-/run/
-/out/
-/logs/
+# Ignore unwanted files from git
 
-bin/
-.classpath
-.project
+# eclipse
+bin
 *.launch
-.settings/
+.settings
+.metadata
+.classpath
+.factorypath
+.project
 
-.vscode/
+# idea
+# out
+out
+*.ipr
+*.iws
+*.iml
+# ignore .idea except
+.idea/*
+# code style
+!.idea/codeStyles/
+# inspection profile
+!.idea/inspectionProfiles/
+# recommended plugins
+!.idea/externalDependencies.xml
+
+# kotlin
+.kotlin
+
+# vscode
+.vscode
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+run_server
+logs
+
+# Files from Forge MDK
+forge*changelog.txt

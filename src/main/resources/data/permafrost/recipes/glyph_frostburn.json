@@ -18,8 +18,5 @@
       "item": "minecraft:nether_star"
     }
   ],
-  "output": {
-    "id": "permafrost:glyph_frostburn",
-    "count": 1
-  }
+  "output": "permafrost:glyph_frostburn"
 }

@@ -1,4 +1,4 @@
-package io.github.m3t4f1v3.permafrost.mixin.powergrid;
+package io.github.m3t4f1v3.permafrost.mixin.thermodynamica_integrations.powergrid;
 
 import org.patryk3211.powergrid.circuits.thermal.ThermalUnit;
 import org.spongepowered.asm.mixin.Mixin;
