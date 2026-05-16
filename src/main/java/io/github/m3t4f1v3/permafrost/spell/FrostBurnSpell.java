@@ -1,5 +1,6 @@
 package io.github.m3t4f1v3.permafrost.spell;
 
+import io.github.m3t4f1v3.permafrost.Permafrost;
 import io.github.m3t4f1v3.permafrost.integration.ArsNouveauIntegration;
 import io.github.m3t4f1v3.permafrost.integration.ThermodynamicaIntegration;
 
@@ -22,6 +23,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
@@ -29,6 +31,8 @@ import java.util.Set;
 public class FrostBurnSpell extends AbstractEffect {
 
     public static final FrostBurnSpell INSTANCE = new FrostBurnSpell();
+
+    private static final float TEMPERATURE = 3500F;
 
     private FrostBurnSpell() {
         super(ResourceLocation.fromNamespaceAndPath("permafrost", "glyph_frostburn"), "Frost Burn");
@@ -47,8 +51,19 @@ public class FrostBurnSpell extends AbstractEffect {
 
         for (BlockPos targetPos : SpellUtil.calcAOEBlocks(shooter, rayTraceResult.getBlockPos(), rayTraceResult,
                 spellStats)) {
-            ThermodynamicaIntegration.applyHeatToSimulation(world, targetPos,
-                    3500F);
+            double baseTemp = TEMPERATURE * (spellStats.getAmpMultiplier() + 1.);
+            if (ModList.get().isLoaded("thermodynamica")) {
+                ThermodynamicaIntegration.applyHeatToSimulation(world, targetPos,
+                        baseTemp);
+            }
+            else {
+                float distance = targetPos.distManhattan(rayTraceResult.getBlockPos());
+                float temperature = (float) baseTemp;
+                if (distance > 0.) {
+                    temperature /= distance;
+                }
+                Permafrost.melt(world, targetPos, temperature);
+            }
         }
     }
 

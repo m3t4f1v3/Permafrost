@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
  * - Power Grid Heating Coils (electric heating)
  * - Ars Nouveau Frost Burn spell (magical heating)
  */
-public class PermafrostIceBlock extends IceBlock implements Meltable {
+public class PermafrostIceBlock extends IceBlock {
 
     public PermafrostIceBlock(Properties properties) {
         super(properties);
@@ -37,10 +37,5 @@ public class PermafrostIceBlock extends IceBlock implements Meltable {
             Entity entity) {
         // Entities cannot destroy this
         return false;
-    }
-
-    @Override
-    public float getMeltThreshold(BlockState state) {
-        return 3000F;
     }
 }

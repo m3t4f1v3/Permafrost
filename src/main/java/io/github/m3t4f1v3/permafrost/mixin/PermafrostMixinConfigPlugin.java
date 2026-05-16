@@ -41,6 +41,9 @@ public class PermafrostMixinConfigPlugin implements IMixinConfigPlugin {
 
     @Override
     public List<String> getMixins() {
+        if (!isThermodynamicaInstalled) {
+            return List.of("powergrid.NonThermoHeaterBlockEntityMixin");
+        }
         return null;
     }
 

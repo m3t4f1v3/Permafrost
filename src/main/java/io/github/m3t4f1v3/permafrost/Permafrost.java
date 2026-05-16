@@ -96,11 +96,11 @@ public class Permafrost {
         return LOGGER;
     }
 
-    public static void melt(Level level, BlockState state, float temperature, BlockPos pos) {
+    public static void melt(Level level, BlockPos pos, float temperature) {
         if (level.isClientSide) {
             return;
         }
-
+        BlockState state = level.getBlockState(pos);
         Block block = state.getBlock();
 
         float permafrostThreshold = 3000F;

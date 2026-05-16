@@ -48,7 +48,6 @@ public final class ThermodynamicaIntegration {
         Level level = event.getLevel();
         BlockPos pos = event.getPos();
 
-        BlockState state = level.getBlockState(event.getPos());
-        Permafrost.melt(level, state, (float) event.getNewCelsius(), pos);
+        Permafrost.melt(level, pos, (float) event.getNewCelsius());
     }
 }

@@ -6,7 +6,8 @@
   "refmap": "permafrost.refmap.json",
   "mixins": [
     "homeostatic.EnvironmentMixin",
-    "homeostatic.VecMathMixin"
+    "homeostatic.VecMathMixin",
+    "powergrid.HeaterBlockEntityMixin"
   ],
   "client": [],
   "injectors": {

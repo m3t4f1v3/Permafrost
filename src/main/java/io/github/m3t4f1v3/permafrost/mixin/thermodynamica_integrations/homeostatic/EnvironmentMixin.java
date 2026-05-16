@@ -73,7 +73,7 @@ public class EnvironmentMixin {
         double radiation = heatFlux * Math.max(0.0, amount);
 
         if (distance > 1.) {
-            radiation /= distance * distance;
+            radiation /= (distance * distance);
         }
 
         if (y > 0 && y < 5) {
