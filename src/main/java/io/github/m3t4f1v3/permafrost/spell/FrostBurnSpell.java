@@ -92,7 +92,7 @@ public class FrostBurnSpell extends AbstractEffect {
 
     @Override
     public String getBookDescription() {
-        return "DESCRIBE ME";
+        return "An intense burst of thermal energy strong enough to melt permafrost.";
     }
 
 }

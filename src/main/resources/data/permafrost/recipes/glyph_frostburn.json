@@ -1,21 +1,37 @@
 {
   "type": "ars_nouveau:glyph",
+  "count": 1,
   "exp": 160,
-  "inputs": [
+  "inputItems": [
     {
-      "item": "ars_nouveau:fire_essence"
+      "item": {
+        "item": "ars_nouveau:fire_essence"
+      }
     },
     {
-      "item": "minecraft:blaze_rod"
+      "item": {
+        "item": "mebahelcreaturesdraugr:magical_stone/frost_bite_magical_stone"
+      }
     },
     {
-      "item": "minecraft:magma_cream"
+      "item": {
+        "item": "ars_nouveau:frostaya_pod"
+      }
     },
     {
-      "item": "minecraft:dragon_breath"
+      "item": {
+        "item": "cataclysm:cursium_ingot"
+      }
     },
     {
-      "item": "minecraft:nether_star"
+      "item": {
+        "item": "cataclysm:ignitium_ingot"
+      }
+    },
+    {
+      "item": {
+        "item": "cataclysm:lava_power_cell"
+      }
     }
   ],
   "output": "permafrost:glyph_frostburn"
