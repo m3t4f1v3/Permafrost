@@ -3,14 +3,12 @@ package io.github.m3t4f1v3.permafrost.mixin;
 import com.llamalad7.mixinextras.MixinExtrasBootstrap;
 import java.util.List;
 import java.util.Set;
-import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.LoadingModList;
-import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
-public class PermafrostMixinConfigPlugin implements IMixinConfigPlugin {
+public class PermafrostThermodynamicaMixinConfigPlugin implements IMixinConfigPlugin {
 
     static boolean isThermodynamicaInstalled = false;
 

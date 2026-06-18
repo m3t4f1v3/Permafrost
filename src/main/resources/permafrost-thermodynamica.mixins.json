@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "io.github.m3t4f1v3.permafrost.mixin.thermodynamica_integrations",
-  "plugin": "io.github.m3t4f1v3.permafrost.mixin.PermafrostMixinConfigPlugin",
+  "plugin": "io.github.m3t4f1v3.permafrost.mixin.PermafrostThermodynamicaMixinConfigPlugin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "permafrost.refmap.json",
   "mixins": [

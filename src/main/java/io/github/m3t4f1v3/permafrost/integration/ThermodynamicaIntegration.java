@@ -1,7 +1,5 @@
 package io.github.m3t4f1v3.permafrost.integration;
 
-import java.util.function.Consumer;
-
 import com.Tribulla.thermodynamica.api.HeatAPI;
 import com.Tribulla.thermodynamica.api.TemperatureChangeEvent;
 
@@ -10,8 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 

@@ -140,7 +140,18 @@ repositories {
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
     // Prefer local maven to allow using a locally-built Thermodynamica via publishToMavenLocal
     mavenLocal()
-    maven { url = 'https://api.modrinth.com/maven' }
+    maven {
+        url = uri("https://api.modrinth.com/maven")
+        content {
+            includeGroup("maven.modrinth")
+        }
+    }
+    maven {
+        url = uri("https://cursemaven.com")
+        content {
+            includeGroup("curse.maven")
+        }
+    }
     maven { url = 'https://maven.tterrag.com/' }
     maven {
         url = 'https://maven.createmod.net'
@@ -191,8 +202,7 @@ dependencies {
     compileOnly fg.deobf('maven.modrinth:homeostatic:1.20.1-2.9.16.2-FORGE')
     runtimeOnly fg.deobf('maven.modrinth:homeostatic:1.20.1-2.9.16.2-FORGE')
 
-    compileOnly(fg.deobf('maven.modrinth:prototype-pain:2.7.2'))
-    runtimeOnly(fg.deobf('maven.modrinth:prototype-pain:2.7.2'))
+    implementation(fg.deobf("curse.maven:casualties-cubed-1539563:8069964"))
 
     implementation(fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false })
     implementation(fg.deobf("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"))

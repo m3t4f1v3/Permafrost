@@ -1,20 +1,14 @@
 package io.github.m3t4f1v3.permafrost.mixin.powergrid;
 
-import io.github.m3t4f1v3.permafrost.Permafrost;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 import org.patryk3211.powergrid.electricity.base.ElectricBlockEntity;
 import org.patryk3211.powergrid.electricity.heater.HeaterBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(HeaterBlockEntity.class)
 public abstract class HeaterBlockEntityMixin extends ElectricBlockEntity {

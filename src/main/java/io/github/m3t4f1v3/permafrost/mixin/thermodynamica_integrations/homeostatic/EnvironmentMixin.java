@@ -1,13 +1,11 @@
 package io.github.m3t4f1v3.permafrost.mixin.thermodynamica_integrations.homeostatic;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 
 import homeostatic.common.block.BlockRadiation;
 import homeostatic.common.temperature.Environment;
-import io.github.m3t4f1v3.permafrost.Permafrost;
 import io.github.m3t4f1v3.permafrost.integration.ThermodynamicaIntegration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -15,12 +13,8 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.level.chunk.PalettedContainer;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import org.joml.Vector3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

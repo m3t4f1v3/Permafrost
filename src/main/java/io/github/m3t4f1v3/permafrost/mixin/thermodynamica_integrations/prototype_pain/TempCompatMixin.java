@@ -7,8 +7,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 
 import io.github.m3t4f1v3.permafrost.integration.ThermodynamicaIntegration;
-import net.adinvas.prototype_pain.compat.TempCompat;
-import net.adinvas.prototype_pain.compat.TempCompat.BiomeTemperatureEntry;
+import net.adinvas.casualties_cubed.compat.TempCompat;
+import net.adinvas.casualties_cubed.compat.TempCompat.BiomeTemperatureEntry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 

@@ -5,9 +5,8 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "permafrost.refmap.json",
   "mixins": [
-    "homeostatic.EnvironmentMixin",
-    "homeostatic.VecMathMixin",
-    "powergrid.HeaterBlockEntityMixin"
+    "powergrid.HeaterBlockEntityMixin",
+    "homeostatic.EnvironmentMixin"
   ],
   "client": [],
   "injectors": {
